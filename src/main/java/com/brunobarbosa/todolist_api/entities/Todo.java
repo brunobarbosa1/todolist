@@ -27,23 +27,22 @@ public class Todo {
 
     private Todo(String title,
                 String description,
-                LocalDateTime date,
-                boolean done) {
+                LocalDateTime date) {
 
         validate(title, description, date);
 
         this.title = title;
         this.description = description;
         this.date = date;
-        this.done = done;
+        this.done = false;
     }
 
     // Factory method
-    public static Todo create(String title, String description, LocalDateTime date, boolean done){
-        return new Todo(title, description, date, done);
+    public static Todo create(String title, String description, LocalDateTime date){
+        return new Todo(title, description, date);
     }
 
-    public void update(String title, String description, LocalDateTime date, boolean done){
+    public void update(String title, String description, LocalDateTime date){
         validate(title, description, date);
         this.title = title;
         this.description = description;
@@ -52,6 +51,10 @@ public class Todo {
 
     public void complete(){
         this.done = true;
+    }
+
+    public void reopen() {
+        this.done = false;
     }
 
     private static void validate(String title, String description, LocalDateTime date){
